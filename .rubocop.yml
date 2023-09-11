@@ -1,0 +1,27 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - bin/**
+    - config/routes.rb
+    - vendor/**/*
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/**'
+    - 'config/environments/**'
+    - 'spec/*/**'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
