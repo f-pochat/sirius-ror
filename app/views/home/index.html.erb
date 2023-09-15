@@ -1,1 +1,31 @@
-<h1>Welcome</h1>
+<h1>Welcome to Weather API</h1>
+
+
+<%= form_tag(root_path, method: :get) do %>
+  <label for="zipcode">Enter ZIP code:</label>
+  <%= text_field_tag(:zipcode) %>
+  <%= submit_tag('Search') %>
+<% end %>
+
+<% if @data_pulled_from_cache %>
+<h4>Data pulled from cache</h4>
+<% end %>
+
+<% if @current_weather %>
+  <h2>Current Weather in <%= @current_weather['name'] %></h2>
+  <p>Temperature: <%= @current_weather['main']['temp'] %>°C</p>
+  <p>Weather Description: <%= @current_weather['weather'][0]['description'] %></p>
+<% else %>
+  <p><%= flash[:alert] %></p>
+<% end %>
+
+<% if @weather_forecast %>
+  <h2>Weather Forecast for <%= @weather_forecast['city']['name'] %></h2>
+  <% @weather_forecast['list'].each do |forecast| %>
+    <p>
+      Date: <%= Time.at(forecast['dt']).strftime('%Y-%m-%d %H:%M:%S') %><br>
+      Temperature: <%= forecast['main']['temp'] %>°C<br>
+      Weather Description: <%= forecast['weather'][0]['description'] %>
+    </p>
+  <% end %>
+<% end %>

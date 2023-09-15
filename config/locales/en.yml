@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  flash:
+    alert:
+      invalid_zip_code: 'Please enter a valid ZIP code.'
